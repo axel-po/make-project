@@ -1,21 +1,16 @@
 import Login from "@/components/Login";
 import User from "@/components/User";
-import { db } from "@/server/db";
+import Project from "@/features/project/Projects";
+import { getProjects } from "@/query/project.query";
 import React from "react";
 
 const HomePage = async () => {
-  const data = await db.project.findMany({
-    select: {
-      title: true,
-    },
-  });
-
-  console.log("data", data);
+  const projects = await getProjects();
 
   return (
     <>
-      <Login />
       <User />
+      <Project projects={projects} />
     </>
   );
 };
