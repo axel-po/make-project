@@ -10,4 +10,16 @@ export const getProjects = () =>
     },
   });
 
+export const getProjectView = (id: string) =>
+  db.project.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+    },
+  });
+
 export type ProjectType = Prisma.PromiseReturnType<typeof getProjects>[number];
