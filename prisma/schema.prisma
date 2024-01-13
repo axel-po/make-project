@@ -63,7 +63,8 @@ model User {
     sessions      Session[]
     posts         Post[]
 
-    projects Project[]
+    projects    Project[]
+    ProjectUser ProjectUser[]
 }
 
 model VerificationToken {
@@ -74,11 +75,57 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
+// Project
 model Project {
-    id          String   @id @default(cuid())
-    title       String
-    description String
-    createdAt   DateTime @default(now())
-    userId      String
-    user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id                String              @id @default(cuid())
+    title             String
+    description       String
+    createdAt         DateTime            @default(now())
+    userId            String
+    user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+    category          Category?           @relation(fields: [categoryId], references: [id])
+    categoryId        String?
+    technologies      Technology[]
+    members           ProjectUser[]
+    ProjectTechnology ProjectTechnology[]
+
+    @@index([categoryId], name: "categoryId")
+}
+
+model ProjectUser {
+    projectId String
+    userId    String
+    status    String? @default("pending")
+
+    project Project @relation(fields: [projectId], references: [id])
+    user    User    @relation(fields: [userId], references: [id])
+
+    @@id([projectId, userId])
+}
+
+// Table Category 
+model Category {
+    id   String @id @default(cuid())
+    name String
+
+    projects Project[]
+}
+
+// Table Technology
+model Technology {
+    id   String @id @default(cuid())
+    name String
+
+    projects          Project[]
+    ProjectTechnology ProjectTechnology[]
+}
+
+model ProjectTechnology {
+    projectId    String
+    technologyId String
+
+    project    Project    @relation(fields: [projectId], references: [id])
+    technology Technology @relation(fields: [technologyId], references: [id])
+
+    @@id([projectId, technologyId])
 }

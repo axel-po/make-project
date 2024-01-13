@@ -2,14 +2,20 @@ import { getServerAuthSession } from "@/server/auth";
 import { redirect } from "next/navigation";
 import React from "react";
 
-const Demo = async () => {
+const Dashboard = async () => {
   const session = await getServerAuthSession();
 
   if (!session) {
     redirect("/");
   }
 
-  return <div>Dashboardd</div>;
+  return (
+    <>
+      <h1 className="text-3xl font-bold">
+        Dashboard de : {session?.user?.name}
+      </h1>
+    </>
+  );
 };
 
-export default Demo;
+export default Dashboard;

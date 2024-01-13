@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
         <Header />
-        {children}
+        <div className="mx-auto mt-6 w-[90%] max-w-[1100px]">{children}</div>
       </body>
     </html>
   );

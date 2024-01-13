@@ -7,6 +7,30 @@ export const getProjects = () =>
       id: true,
       title: true,
       description: true,
+      category: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+      technologies: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+  });
+
+export const getProjectView = (id: string) =>
+  db.project.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      title: true,
+      description: true,
     },
   });
 
