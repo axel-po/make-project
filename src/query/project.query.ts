@@ -7,6 +7,18 @@ export const getProjects = () =>
       id: true,
       title: true,
       description: true,
+      category: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+      technologies: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
     },
   });
 
