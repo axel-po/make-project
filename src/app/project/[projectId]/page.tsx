@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { getProjectView } from "@/query/project.query";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -10,7 +11,6 @@ const ProjectView = async ({
   };
 }) => {
   const project = await getProjectView(params?.projectId);
-  console.log("project", project);
 
   if (!project) {
     return notFound();
@@ -21,6 +21,8 @@ const ProjectView = async ({
       <div>{project?.title}</div>
 
       <div>{params?.projectId}</div>
+
+      <Button>Demander à rejoindre </Button>
     </>
   );
 };
