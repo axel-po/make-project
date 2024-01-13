@@ -34,4 +34,13 @@ export const getProjectView = (id: string) =>
     },
   });
 
+export const createRelationUserProject = (projectId: string, userId: string) =>
+  db.usersWhoWantJoinProject.create({
+    data: {
+      projectId,
+      userId,
+      status: "pending",
+    },
+  });
+
 export type ProjectType = Prisma.PromiseReturnType<typeof getProjects>[number];

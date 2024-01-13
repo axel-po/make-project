@@ -63,8 +63,8 @@ model User {
     sessions      Session[]
     posts         Post[]
 
-    projects    Project[]
-    ProjectUser ProjectUser[]
+    projects                Project[]
+    UsersWhoWantJoinProject UsersWhoWantJoinProject[]
 }
 
 model VerificationToken {
@@ -77,28 +77,30 @@ model VerificationToken {
 
 // Project
 model Project {
-    id                String              @id @default(cuid())
+    id                String                    @id @default(cuid())
     title             String
     description       String
-    createdAt         DateTime            @default(now())
+    createdAt         DateTime                  @default(now())
     userId            String
-    user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
-    category          Category?           @relation(fields: [categoryId], references: [id])
+    user              User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    category          Category?                 @relation(fields: [categoryId], references: [id])
     categoryId        String?
     technologies      Technology[]
-    members           ProjectUser[]
+    members           UsersWhoWantJoinProject[]
     ProjectTechnology ProjectTechnology[]
 
     @@index([categoryId], name: "categoryId")
 }
 
-model ProjectUser {
+model UsersWhoWantJoinProject {
     projectId String
     userId    String
     status    String? @default("pending")
 
-    project Project @relation(fields: [projectId], references: [id])
-    user    User    @relation(fields: [userId], references: [id])
+    project     Project @relation(fields: [projectId], references: [id])
+    user        User    @relation(fields: [userId], references: [id])
+    userName    String?
+    projectName String?
 
     @@id([projectId, userId])
 }

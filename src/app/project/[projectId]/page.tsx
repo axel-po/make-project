@@ -1,5 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { getProjectView } from "@/query/project.query";
+import {
+  createRelationUserProject,
+  getProjectView,
+} from "@/query/project.query";
+import { getServerAuthSession } from "@/server/auth";
+import { db } from "@/server/db";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -11,10 +16,23 @@ const ProjectView = async ({
   };
 }) => {
   const project = await getProjectView(params?.projectId);
+  const session = await getServerAuthSession();
+
+  const userId = session?.user?.id ?? "1";
+  const projectId = params?.projectId;
 
   if (!project) {
     return notFound();
   }
+
+  const data = await db.usersWhoWantJoinProject.findMany({
+    select: {
+      projectId: true,
+      userId: true,
+    },
+  });
+
+  console.log(data);
 
   return (
     <>
@@ -22,7 +40,16 @@ const ProjectView = async ({
 
       <div>{params?.projectId}</div>
 
-      <Button>Demander à rejoindre </Button>
+      <form>
+        <Button
+          formAction={async () => {
+            "use server";
+            await createRelationUserProject(projectId, userId);
+          }}
+        >
+          Demander à rejoindre{" "}
+        </Button>
+      </form>
     </>
   );
 };
