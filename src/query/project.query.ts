@@ -13,6 +13,11 @@ export const getProjects = () =>
           name: true,
         },
       },
+      user: {
+        select: {
+          name: true,
+        },
+      },
       technologies: {
         select: {
           id: true,
@@ -31,6 +36,26 @@ export const getProjectView = (id: string) =>
       id: true,
       title: true,
       description: true,
+      user: true,
+    },
+  });
+
+export const usersInterestedInProjects = (userId: string) =>
+  db.usersWhoWantJoinProject.findMany({
+    where: {
+      project: {
+        user: {
+          id: userId,
+        },
+      },
+    },
+    include: {
+      user: true,
+      project: {
+        select: {
+          title: true,
+        },
+      },
     },
   });
 
