@@ -27,7 +27,7 @@ const ProjectCard = ({ projects }: ProjectsProps) => {
           </CardHeader>
           <CardContent>{project.description}</CardContent>
           <CardFooter className="mb-4 flex flex-col gap-y-3 text-right text-sm text-gray-400">
-            Créer par Neo
+            Créer {project.user.name}
             <Link href={`/project/${project.id}`}>
               <Button className="w-full">En savoir plus</Button>
             </Link>

@@ -10,7 +10,6 @@ const Dashboard = async () => {
 
   if (!session) {
     redirect("/");
-  } else {
   }
 
   const userInterestedByYourProject = await usersInterestedInProjects(userId);

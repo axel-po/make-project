@@ -13,6 +13,11 @@ export const getProjects = () =>
           name: true,
         },
       },
+      user: {
+        select: {
+          name: true,
+        },
+      },
       technologies: {
         select: {
           id: true,
