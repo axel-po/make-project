@@ -40,15 +40,6 @@ export const getProjectView = (id: string) =>
     },
   });
 
-export const createRelationUserProject = (projectId: string, userId: string) =>
-  db.usersWhoWantJoinProject.create({
-    data: {
-      projectId,
-      userId,
-      status: "pending",
-    },
-  });
-
 export const usersInterestedInProjects = (userId: string) =>
   db.usersWhoWantJoinProject.findMany({
     where: {

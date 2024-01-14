@@ -97,10 +97,8 @@ model UsersWhoWantJoinProject {
     userId    String
     status    String? @default("pending")
 
-    project     Project @relation(fields: [projectId], references: [id])
-    user        User    @relation(fields: [userId], references: [id])
-    userName    String?
-    projectName String?
+    project Project @relation(fields: [projectId], references: [id])
+    user    User    @relation(fields: [userId], references: [id])
 
     @@id([projectId, userId])
 }
