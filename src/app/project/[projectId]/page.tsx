@@ -21,18 +21,13 @@ const ProjectView = async ({
   const userId = session?.user?.id ?? "1";
   const projectId = params?.projectId;
 
+  let isProjectOwner = false;
+
   if (!project) {
     return notFound();
+  } else {
+    isProjectOwner = project.user.id === userId;
   }
-
-  const data = await db.usersWhoWantJoinProject.findMany({
-    select: {
-      projectId: true,
-      userId: true,
-    },
-  });
-
-  console.log(data);
 
   return (
     <>
@@ -40,16 +35,20 @@ const ProjectView = async ({
 
       <div>{params?.projectId}</div>
 
-      <form>
-        <Button
-          formAction={async () => {
-            "use server";
-            await createRelationUserProject(projectId, userId);
-          }}
-        >
-          Demander à rejoindre{" "}
-        </Button>
-      </form>
+      <p>Créer par : {project?.user?.name}</p>
+
+      {!isProjectOwner && session && (
+        <form>
+          <Button
+            formAction={async () => {
+              "use server";
+              await createRelationUserProject(projectId, userId);
+            }}
+          >
+            Demander à rejoindre{" "}
+          </Button>
+        </form>
+      )}
     </>
   );
 };

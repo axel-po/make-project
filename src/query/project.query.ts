@@ -31,6 +31,7 @@ export const getProjectView = (id: string) =>
       id: true,
       title: true,
       description: true,
+      user: true,
     },
   });
 
@@ -40,6 +41,25 @@ export const createRelationUserProject = (projectId: string, userId: string) =>
       projectId,
       userId,
       status: "pending",
+    },
+  });
+
+export const usersInterestedInProjects = (userId: string) =>
+  db.usersWhoWantJoinProject.findMany({
+    where: {
+      project: {
+        user: {
+          id: userId,
+        },
+      },
+    },
+    include: {
+      user: true,
+      project: {
+        select: {
+          title: true,
+        },
+      },
     },
   });
 
