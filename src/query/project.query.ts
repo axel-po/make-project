@@ -51,23 +51,33 @@ export const deleteProject = (projectId: string) =>
     },
   });
 
-export const usersInterestedInProjects = (userId: string) =>
-  db.usersWhoWantJoinProject.findMany({
+export const getProjectsByUserId = (userId: string) =>
+  db.project.findMany({
     where: {
-      project: {
-        user: {
-          id: userId,
+      userId: userId,
+    },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      createdAt: true,
+      category: {
+        select: {
+          id: true,
+          name: true,
         },
       },
-    },
-    include: {
-      user: true,
-      project: {
+      user: {
         select: {
-          title: true,
+          name: true,
+        },
+      },
+      technologies: {
+        select: {
+          id: true,
+          name: true,
         },
       },
     },
   });
-
 export type ProjectType = Prisma.PromiseReturnType<typeof getProjects>[number];

@@ -9,7 +9,6 @@ import {
 import { getServerAuthSession } from "@/server/auth";
 import Link from "next/link";
 import { User2 } from "lucide-react";
-import Login from "./Login";
 import Logout from "./Logout";
 
 const UserProfile = async () => {
