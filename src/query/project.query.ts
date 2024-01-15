@@ -3,10 +3,14 @@ import { db } from "@/server/db";
 
 export const getProjects = () =>
   db.project.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
     select: {
       id: true,
       title: true,
       description: true,
+      createdAt: true,
       category: {
         select: {
           id: true,
@@ -37,6 +41,13 @@ export const getProjectView = (id: string) =>
       title: true,
       description: true,
       user: true,
+    },
+  });
+
+export const deleteProject = (projectId: string) =>
+  db.project.delete({
+    where: {
+      id: projectId,
     },
   });
 

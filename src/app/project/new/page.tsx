@@ -10,11 +10,11 @@ const CreateProject = async () => {
   }
 
   return (
-    <>
-      <h1>Création projet</h1>
+    <section className="mx-auto max-w-3xl">
+      <h1 className="mb-6">Création de votre projet</h1>
 
       <FormNewProject />
-    </>
+    </section>
   );
 };
 

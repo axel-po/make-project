@@ -23,9 +23,9 @@ const UserProfile = async () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuItem asChild>
-          <Link href="/profile">
+          <Link className="mb-2 h-[40px] cursor-pointer" href="/profile">
             <User2 className="mr-2 h-4 w-4" />
-            Profile
+            View Profile
           </Link>
         </DropdownMenuItem>
         <Logout />

@@ -44,13 +44,13 @@ const FormNewProject = () => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(async () => {
-      const res = await createProject(values);
+      await createProject(values);
     });
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="title"
@@ -73,7 +73,7 @@ const FormNewProject = () => {
               <FormLabel>Description du projet</FormLabel>
               <FormControl>
                 <Textarea
-                  className="h-[255px] resize-none"
+                  className="h-[150px] resize-none"
                   {...field}
                   onChange={field.onChange}
                 />

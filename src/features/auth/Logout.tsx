@@ -5,7 +5,7 @@ import React from "react";
 
 const Logout = () => {
   return (
-    <Button variant="destructive" onClick={() => signOut()}>
+    <Button className="w-full" variant="destructive" onClick={() => signOut()}>
       Logout
     </Button>
   );
