@@ -1,4 +1,3 @@
-import User from "@/components/User";
 import { Button } from "@/components/ui/button";
 import ProjectCard from "@/features/project/ProjectCard";
 import { getProjects } from "@/query/project.query";
@@ -9,15 +8,13 @@ const HomePage = async () => {
   const projects = await getProjects();
 
   return (
-    <>
-      <Link href="/project/new">
-        <Button>Créer un projet</Button>
-      </Link>
+    <section className="mt-6">
+      <h1 className="mb-6 text-3xl font-bold">Les derniers projets</h1>
 
-      <div className="mx-auto grid w-[90%] max-w-[1400px] grid-cols-4">
+      <div className="grid grid-cols-3">
         <ProjectCard projects={projects} />
       </div>
-    </>
+    </section>
   );
 };
 
