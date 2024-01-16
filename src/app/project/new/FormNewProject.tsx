@@ -18,7 +18,7 @@ import { Loader } from "@/components/ui/loader";
 import { useTransition } from "react";
 import { createProject } from "./new.action";
 import { redirect } from "next/navigation";
-import { error } from "console";
+import { CategoryType } from "@/query/category.query";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -31,7 +31,11 @@ const formSchema = z.object({
 
 export type FormProjectType = z.infer<typeof formSchema>;
 
-const FormNewProject = () => {
+type FormNewProjectProps = {
+  categories: CategoryType[];
+};
+
+const FormNewProject = ({ categories }: FormNewProjectProps) => {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof formSchema>>({
