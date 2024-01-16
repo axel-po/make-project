@@ -53,7 +53,8 @@ const ProjectView = async ({
         <>
           {isProjectOwner ? (
             <>
-              <RemoveProject />
+              {/* <RemoveProject /> */}
+              <p>remove</p>
             </>
           ) : (
             <>

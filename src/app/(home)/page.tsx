@@ -9,11 +9,16 @@ const HomePage = async () => {
 
   return (
     <section className="mt-6">
-      <h1 className="mb-6 text-3xl font-bold">Les derniers projets</h1>
-
-      <div className="grid grid-cols-3 gap-4">
-        <ProjectCard projects={projects} />
-      </div>
+      {projects.length === 0 ? (
+        <p>Pas de projet disponible.</p>
+      ) : (
+        <>
+          <h1 className="mb-6 text-3xl font-bold">Les derniers projets</h1>
+          <div className="grid grid-cols-3 gap-4">
+            <ProjectCard projects={projects} />
+          </div>
+        </>
+      )}
     </section>
   );
 };
