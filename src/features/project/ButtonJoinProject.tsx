@@ -15,7 +15,7 @@ const ButtonJoinProject = ({ projectId, userId }: Props) => {
       <Button
         formAction={async () => {
           "use server";
-          const res = await createRelationUserProject(projectId, userId);
+          await createRelationUserProject(projectId, userId);
 
           revalidatePath(`/project/${projectId}`);
         }}

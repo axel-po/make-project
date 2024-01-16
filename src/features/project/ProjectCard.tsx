@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { formatProjectDate } from "@/lib/utils";
 
 type ProjectsProps = {
   projects: ProjectType[];
@@ -23,14 +24,19 @@ const ProjectCard = ({ projects }: ProjectsProps) => {
           <CardHeader>
             <CardTitle>{project.title}</CardTitle>
             <CardDescription>Développement frontend</CardDescription>
-            <CardDescription>{project?.id}</CardDescription>
+            <CardDescription>
+              Date de création :{" "}
+              {formatProjectDate(project.createdAt.toString())}
+            </CardDescription>
           </CardHeader>
           <CardContent>{project.description}</CardContent>
-          <CardFooter className="mb-4 flex flex-col gap-y-3 text-right text-sm text-gray-400">
-            Créer {project.user.name}
-            <Link href={`/project/${project.id}`}>
-              <Button className="w-full">En savoir plus</Button>
-            </Link>
+          <CardFooter>
+            <div className="flex w-full items-center justify-between">
+              <p className="text-sm text-gray-400">Par {project.user.name}</p>
+              <Link href={`/project/${project.id}`}>
+                <Button className="w-full">En savoir plus</Button>
+              </Link>
+            </div>
           </CardFooter>
         </Card>
       ))}

@@ -13,7 +13,7 @@ export const createProject = async (values: FormProjectType) => {
     throw new Error("You must be logged in to do this.");
   }
 
-  const res = await db.project.create({
+  await db.project.create({
     data: {
       title: values.title,
       description: values.description,

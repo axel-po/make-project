@@ -1,7 +1,11 @@
-import { usersInterestedInProjects } from "@/query/project.query";
+import TableDashboard from "@/features/dashboard/TableDashboard";
+
 import { getServerAuthSession } from "@/server/auth";
 import { redirect } from "next/navigation";
 import React from "react";
+import { usersInterestedInProjects } from "@/query/user.query";
+import { getProjectsByUserId } from "@/query/project.query";
+import ProjectCard from "@/features/project/ProjectCard";
 
 const Dashboard = async () => {
   const session = await getServerAuthSession();
@@ -14,21 +18,29 @@ const Dashboard = async () => {
 
   const userInterestedByYourProject = await usersInterestedInProjects(userId);
 
-  console.log(userInterestedByYourProject);
+  const projectsUser = await getProjectsByUserId(userId);
+
+  console.log("dd", projectsUser);
 
   return (
     <>
-      <h1 className="text-3xl font-bold">
-        Dashboard de : {session?.user?.name}
-      </h1>
+      <h1 className="text-3xl font-bold">Votre Dashboard</h1>
 
-      <ul>
+      <section className="py-6">
+        <h2>Vos projets : </h2>
+
+        <div className="grid grid-cols-3 gap-4">
+          <ProjectCard projects={projectsUser} />
+        </div>
+      </section>
+
+      {/* <ul>
         {userInterestedByYourProject?.map((user) => (
           <li key={user.user.id}>
             user : {user.user.name} project : {user?.project?.title}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </>
   );
 };

@@ -18,7 +18,7 @@ import { Loader } from "@/components/ui/loader";
 import { useTransition } from "react";
 import { createProject } from "./new.action";
 import { redirect } from "next/navigation";
-import { error } from "console";
+import { CategoryType } from "@/query/category.query";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -31,7 +31,11 @@ const formSchema = z.object({
 
 export type FormProjectType = z.infer<typeof formSchema>;
 
-const FormNewProject = () => {
+type FormNewProjectProps = {
+  categories: CategoryType[];
+};
+
+const FormNewProject = ({ categories }: FormNewProjectProps) => {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -44,13 +48,13 @@ const FormNewProject = () => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(async () => {
-      const res = await createProject(values);
+      await createProject(values);
     });
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="title"
@@ -73,7 +77,7 @@ const FormNewProject = () => {
               <FormLabel>Description du projet</FormLabel>
               <FormControl>
                 <Textarea
-                  className="h-[255px] resize-none"
+                  className="h-[150px] resize-none"
                   {...field}
                   onChange={field.onChange}
                 />
