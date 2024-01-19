@@ -14,7 +14,7 @@ const Header = async () => {
   const session = await getServerAuthSession();
 
   return (
-    <nav className="h-[72px] border-b border-neutral-200 px-12">
+    <nav className="h-[72px] border-b border-neutral-200 bg-white px-12">
       <div className="flex h-full items-center justify-between">
         <Link className="flex items-center gap-3" href="/">
           <Image src="/logo.svg" alt="" width={50} height={50} />
@@ -23,6 +23,9 @@ const Header = async () => {
 
         {session?.user?.id ? (
           <div className="flex items-center gap-3">
+            <Link href="/dashboard">
+              <Button>Vos demandes</Button>
+            </Link>
             <UserProfile />
             <Link href="/project/new">
               <Button>Créer un projet</Button>

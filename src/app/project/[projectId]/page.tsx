@@ -4,7 +4,7 @@ import RemoveProject from "@/features/project/RemoveProject";
 import { getProjectView } from "@/query/project.query";
 import { checkIfUserIsAlreadyInProject } from "@/query/user.query";
 import { getServerAuthSession } from "@/server/auth";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 
 import { notFound } from "next/navigation";
 import React from "react";

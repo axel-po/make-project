@@ -6,6 +6,7 @@ import React from "react";
 import { usersInterestedInProjects } from "@/query/user.query";
 import { getProjectsByUserId } from "@/query/project.query";
 import ProjectCard from "@/features/project/ProjectCard";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const Dashboard = async () => {
   const session = await getServerAuthSession();
@@ -25,10 +26,37 @@ const Dashboard = async () => {
       <h1 className="text-3xl font-bold">Votre Dashboard</h1>
 
       <section className="py-6">
-        <h2>Vos projets : </h2>
+        <div className="block w-full">
+          <h1 className="text-xl">
+            Personnes intéréssé à rejoindre votre projet :{" "}
+          </h1>
 
-        <div className="grid grid-cols-3 gap-4">
-          <ProjectCard projects={projectsUser} />
+          <Alert className="w-full">
+            <AlertDescription className="">
+              John Doe à demander à rejoindre votre projet Next JS Cloen
+            </AlertDescription>
+          </Alert>
+          <div className="mt-2 flex gap-3 text-sm">
+            <button>Voir le profil</button>
+            <button>Accepter</button>
+            <button>Refuser</button>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-6">
+        <div className="block w-full">
+          <h1 className="text-xl">Vous avez demander à rejoindre : </h1>
+
+          <Alert className="w-full">
+            <AlertDescription className="">
+              Projet Full STack Next JS, par Axel Po
+            </AlertDescription>
+          </Alert>
+          <div className="mt-2 flex gap-3 text-sm">
+            <button>Voir le projet</button>
+            <button>Annuler la demande</button>
+          </div>
         </div>
       </section>
 
