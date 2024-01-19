@@ -20,8 +20,6 @@ const Dashboard = async () => {
 
   const projectsUser = await getProjectsByUserId(userId);
 
-  console.log("dd", projectsUser);
-
   return (
     <>
       <h1 className="text-3xl font-bold">Votre Dashboard</h1>

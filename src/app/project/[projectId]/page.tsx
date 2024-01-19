@@ -48,6 +48,7 @@ const ProjectView = async ({
 
       <p className="text-neutral-500">Créer par : {project?.user?.name}</p>
 
+      <p>Catégory : {project?.category?.name}</p>
       <p className="my-8">{project?.description}</p>
       {session && (
         <>
