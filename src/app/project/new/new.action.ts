@@ -22,6 +22,11 @@ export const createProject = async (values: FormProjectType) => {
           id: session.user.id,
         },
       },
+      category: {
+        connect: {
+          id: values.category,
+        },
+      },
     },
   });
 
