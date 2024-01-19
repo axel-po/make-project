@@ -42,6 +42,7 @@ export const getProjectView = (id: string) =>
       description: true,
       user: true,
       category: true,
+      technologies: true,
     },
   });
 

@@ -41,8 +41,8 @@ const formSchema = z.object({
   }),
   technologies: z
     .array(z.string())
-    .refine((value) => value.some((technologie) => technologie), {
-      message: "You have to select at least one item.",
+    .refine((value) => value.some((item) => item), {
+      message: "Vous devez sélectionner une technologie.",
     }),
 });
 
@@ -62,20 +62,20 @@ const FormNewProject = ({ categories, technologies }: FormNewProjectProps) => {
       title: "",
       description: "",
       category: "",
+      technologies: [],
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(async () => {
-      // await createProject(values);
-      console.log(values);
+      await createProject(values);
     });
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        {/* <FormField
+        <FormField
           control={form.control}
           name="title"
           render={({ field }) => (
@@ -87,9 +87,9 @@ const FormNewProject = ({ categories, technologies }: FormNewProjectProps) => {
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
 
-        {/* <FormField
+        <FormField
           control={form.control}
           name="description"
           render={({ field }) => (
@@ -105,9 +105,9 @@ const FormNewProject = ({ categories, technologies }: FormNewProjectProps) => {
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
 
-        {/* <FormField
+        <FormField
           control={form.control}
           name="category"
           render={({ field }) => (
@@ -131,7 +131,7 @@ const FormNewProject = ({ categories, technologies }: FormNewProjectProps) => {
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
 
         <FormField
           control={form.control}
@@ -139,7 +139,7 @@ const FormNewProject = ({ categories, technologies }: FormNewProjectProps) => {
           render={() => (
             <FormItem>
               <div className="mb-4">
-                <FormLabel className="text-base">Technologies</FormLabel>
+                <FormLabel className="text-base">Sidebar</FormLabel>
               </div>
               {technologies.map((technologie) => (
                 <FormField
