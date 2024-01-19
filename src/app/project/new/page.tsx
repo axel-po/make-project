@@ -8,8 +8,6 @@ const CreateProject = async () => {
 
   const allCategories = await getCategories();
 
-  console.log(allCategories);
-
   if (!session) {
     redirect("/");
   }

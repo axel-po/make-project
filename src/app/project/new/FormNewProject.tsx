@@ -19,6 +19,13 @@ import { useTransition } from "react";
 import { createProject } from "./new.action";
 import { redirect } from "next/navigation";
 import { CategoryType } from "@/query/category.query";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -26,6 +33,9 @@ const formSchema = z.object({
   }),
   description: z.string().min(1, {
     message: "Une description est requise.",
+  }),
+  category: z.string().min(1, {
+    message: "Une catégorie est requise.",
   }),
 });
 
@@ -43,12 +53,14 @@ const FormNewProject = ({ categories }: FormNewProjectProps) => {
     defaultValues: {
       title: "",
       description: "",
+      category: "",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(async () => {
       await createProject(values);
+      // console.log(values);
     });
   }
 
@@ -86,6 +98,33 @@ const FormNewProject = ({ categories }: FormNewProjectProps) => {
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="category"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Catégorie</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Choisir une catégorie" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {categories.map((category) => (
+                    <SelectItem key={category.id} value={category?.id}>
+                      {category?.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button type="submit" className="flex gap-2">
           Créer
           {isPending && <Loader />}
