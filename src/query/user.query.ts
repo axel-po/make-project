@@ -10,7 +10,13 @@ export const usersInterestedInProjects = (userId: string) =>
       },
     },
     include: {
-      user: true,
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
       project: {
         select: {
           title: true,
@@ -26,6 +32,16 @@ export const createRelationUserProject = (projectId: string, userId: string) =>
       userId,
       status: "pending",
     },
+  });
+
+export const updatedStatusUserProject = (
+  projectId: string,
+  userId: string,
+  status: "accepted" | "pending" | "rejected",
+) =>
+  db.usersWhoWantJoinProject.update({
+    where: { projectId_userId: { projectId, userId } },
+    data: { status },
   });
 
 export const checkIfUserIsAlreadyInProject = (
