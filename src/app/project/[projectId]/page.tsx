@@ -71,10 +71,30 @@ const ProjectView = async ({
                   <ButtonJoinProject projectId={projectId} userId={userId} />
                 </>
               ) : (
-                <Alert className="max-w-fit border border-green-400 bg-green-100">
-                  <Check className="h-4 w-4" />
-                  <AlertTitle>Vous avez déjà rejoint ce projet. !</AlertTitle>
-                </Alert>
+                <>
+                  {isInProject?.status === "rejected" ? (
+                    <Alert className="max-w-fit border border-red-400 bg-red-100">
+                      {/* <Check className="h-4 w-4" /> */}
+                      <AlertTitle>Vous avez été refuser du projet</AlertTitle>
+                    </Alert>
+                  ) : isInProject?.status === "pending" ? (
+                    <Alert className="max-w-fit border border-amber-400 bg-amber-100">
+                      <Check className="h-4 w-4" />
+                      <AlertTitle>
+                        Vous avez demander à rejoindre ce projet
+                      </AlertTitle>
+                    </Alert>
+                  ) : (
+                    <>
+                      <Alert className="max-w-fit border border-green-400 bg-green-100">
+                        <Check className="h-4 w-4" />
+                        <AlertTitle>
+                          Vous avez déjà rejoint ce projet. !
+                        </AlertTitle>
+                      </Alert>
+                    </>
+                  )}
+                </>
               )}
             </>
           )}
