@@ -27,6 +27,11 @@ export const createProject = async (values: FormProjectType) => {
           id: values.category,
         },
       },
+      technologies: {
+        connect: values.technologies.map((technologieID) => ({
+          id: technologieID,
+        })),
+      },
     },
   });
 

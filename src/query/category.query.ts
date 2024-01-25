@@ -1,5 +1,5 @@
 import { db } from "@/server/db";
-import { Prisma } from "@prisma/client";
+import { type Prisma } from "@prisma/client";
 
 export const getCategories = () => db.category.findMany();
 
