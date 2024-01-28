@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import ButtonJoinProject from "@/features/project/ButtonJoinProject";
-import RemoveProject from "@/features/project/RemoveProject";
+
 import { getProjectView } from "@/query/project.query";
 import { checkIfUserIsAlreadyInProject } from "@/query/user.query";
 import { getServerAuthSession } from "@/server/auth";
@@ -10,6 +10,7 @@ import { notFound } from "next/navigation";
 import React from "react";
 import { Check, MoveLeft } from "lucide-react";
 import Link from "next/link";
+import { RemoveProject } from "@/features/project/ButtonRemoveProject";
 
 const ProjectView = async ({
   params,
@@ -37,6 +38,8 @@ const ProjectView = async ({
   // Check if user is already in project
   const isInProject = await checkIfUserIsAlreadyInProject(projectId, userId);
 
+  console.log(projectId);
+
   return (
     <>
       <Link className="flex items-center gap-2" href="/">
@@ -50,7 +53,7 @@ const ProjectView = async ({
 
       <p>Catégory : {project?.category?.name}</p>
 
-      <div className="mt-12 bg-green-300">
+      <div className="mt-12">
         {project?.technologies.map((techno) => (
           <p key={techno?.id}>{techno?.name}</p>
         ))}
@@ -61,8 +64,7 @@ const ProjectView = async ({
         <>
           {isProjectOwner ? (
             <>
-              {/* <RemoveProject /> */}
-              <p>remove</p>
+              <RemoveProject projectId={projectId} />
             </>
           ) : (
             <>
