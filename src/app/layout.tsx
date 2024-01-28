@@ -1,9 +1,9 @@
-import Header from "@/features/layout/Header";
-import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { Inter } from "next/font/google";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Header from "@/features/layout/Header";
+import Sidebar from "@/features/layout/Sidebar";
+import "@/styles/globals.css";
 import Provider from "@/utils/Providers";
+import { Inter } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,10 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body className={`font-sans ${inter.variable}`}>
         <Header />
-        <div className="mx-auto mt-6 w-[90%] max-w-[1100px]">
+        <Sidebar />
+        <div className="ml-[300px] mr-12 mt-[100px]">
           <Provider>{children}</Provider>
         </div>
         <Toaster />

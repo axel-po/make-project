@@ -1,10 +1,9 @@
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import ProjectCard from "@/features/project/ProjectCard";
 import { getProjects } from "@/query/project.query";
-import Link from "next/link";
-import React from "react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ShieldAlert } from "lucide-react";
+import Link from "next/link";
 
 const HomePage = async () => {
   const projects = await getProjects();
@@ -26,7 +25,7 @@ const HomePage = async () => {
       ) : (
         <>
           <h1 className="mb-6 text-3xl font-bold">Les derniers projets</h1>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="flex flex-col gap-y-5">
             <ProjectCard projects={projects} />
           </div>
         </>

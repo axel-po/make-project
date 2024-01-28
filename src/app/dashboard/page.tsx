@@ -1,15 +1,14 @@
-import { getServerAuthSession } from "@/server/auth";
-import { redirect } from "next/navigation";
-import React from "react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   cancelRequestToJoinProject,
   getProjectsRequestedByUser,
   updatedStatusUserProject,
   usersInterestedInProjects,
 } from "@/query/user.query";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { getServerAuthSession } from "@/server/auth";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
   const session = await getServerAuthSession();

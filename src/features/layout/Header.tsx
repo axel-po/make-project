@@ -1,20 +1,16 @@
-import Login from "@/features/auth/Login";
-import Logout from "@/features/auth/Logout";
 import { Button } from "@/components/ui/button";
+import Login from "@/features/auth/Login";
 import { getServerAuthSession } from "@/server/auth";
 import Link from "next/link";
-import React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import User from "@/components/User";
 
-import UserProfile from "../auth/UserProfile";
 import Image from "next/image";
+import UserProfile from "../auth/UserProfile";
 
 const Header = async () => {
   const session = await getServerAuthSession();
 
   return (
-    <nav className="h-[72px] border-b border-neutral-200 bg-white px-12">
+    <nav className="fixed inset-0 h-[72px] border-b  bg-white px-12">
       <div className="flex h-full items-center justify-between">
         <Link className="flex items-center gap-3" href="/">
           <Image src="/logo.svg" alt="" width={50} height={50} />
