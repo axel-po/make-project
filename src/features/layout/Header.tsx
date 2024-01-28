@@ -20,12 +20,12 @@ const Header = async () => {
         {session?.user?.id ? (
           <div className="flex items-center gap-3">
             <Link href="/dashboard">
-              <Button>Vos demandes</Button>
+              <Button variant="outline">Dashboard</Button>
             </Link>
-            <UserProfile />
             <Link href="/project/new">
               <Button>Créer un projet</Button>
             </Link>
+            <UserProfile />
           </div>
         ) : (
           <Login />

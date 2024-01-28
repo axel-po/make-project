@@ -1,4 +1,4 @@
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import ProjectCard from "@/features/project/ProjectCard";
 import { getProjects } from "@/query/project.query";
@@ -14,11 +14,12 @@ const HomePage = async () => {
         <>
           <Alert className="flex items-center">
             <ShieldAlert />
-            <AlertDescription className="h-full">
-              Il y a aucun projet pour le moment.
-            </AlertDescription>
+            <p className="!pl-8">
+              Il y a aucun projet pour le moment. Sois le premier à en créer un
+              😉🚀 !
+            </p>
           </Alert>
-          <Link className="mt-6 block" href="/project/new">
+          <Link className="mt-6 block max-w-fit bg-red-100" href="/project/new">
             <Button>Créer un projet</Button>
           </Link>
         </>

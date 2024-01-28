@@ -1,13 +1,6 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import {
-  cancelRequestToJoinProject,
-  getProjectsRequestedByUser,
-  updatedStatusUserProject,
-  usersInterestedInProjects,
-} from "@/query/user.query";
+import TabsDashboard from "@/features/dashboard/TabsDashboard";
+import { getProjectsRequestedByUser } from "@/query/user.query";
 import { getServerAuthSession } from "@/server/auth";
-import { revalidatePath } from "next/cache";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
@@ -19,15 +12,16 @@ const Dashboard = async () => {
     redirect("/");
   }
 
-  const userInterestedByYourProject = await usersInterestedInProjects(userId);
   const userRequestProject = await getProjectsRequestedByUser(userId);
-  console.log(userRequestProject);
 
   return (
     <>
-      <h1 className="text-3xl font-bold">Votre Dashboard</h1>
+      <h1 className="mb-12 text-3xl font-bold">Votre Dashboard</h1>
 
-      <section className="py-6">
+      <main>
+        <TabsDashboard />
+      </main>
+      {/* <section className="py-6">
         <div className="block w-full">
           <h1 className="text-xl">
             Personnes intéréssé à rejoindre votre projet :{" "}
@@ -35,7 +29,6 @@ const Dashboard = async () => {
 
           {userInterestedByYourProject.map((user) => (
             <>
-              {/* {user?.status !== "rejected" && ( */}
               <>
                 <Alert className="w-full">
                   <AlertTitle className="mb-4">
@@ -47,7 +40,7 @@ const Dashboard = async () => {
                   </AlertDescription>
                 </Alert>
                 <div className="mt-2 flex gap-3 text-sm">
-                  {/* <button>Voir le profil</button> */}
+                  <button>Voir le profil</button>
                   <form>
                     <button
                       formAction={async () => {
@@ -84,13 +77,12 @@ const Dashboard = async () => {
                   </form>
                 </div>
               </>
-              {/* )} */}
             </>
           ))}
         </div>
-      </section>
+      </section> */}
 
-      <section className="py-6">
+      {/* <section className="py-6">
         <div className="block w-full">
           <h1 className="text-xl">Vous avez demander à rejoindre : </h1>
 
@@ -130,7 +122,7 @@ const Dashboard = async () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
