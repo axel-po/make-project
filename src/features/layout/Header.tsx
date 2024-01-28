@@ -10,8 +10,8 @@ const Header = async () => {
   const session = await getServerAuthSession();
 
   return (
-    <nav className="fixed inset-0 h-[72px] border-b  bg-white px-12">
-      <div className="flex h-full items-center justify-between">
+    <nav className="fixed inset-0 h-[72px]   border-b bg-white px-12 ">
+      <div className="mx-auto flex h-full max-w-[2500px] items-center justify-between">
         <Link className="flex items-center gap-3" href="/">
           <Image src="/logo.svg" alt="" width={50} height={50} />
           <h1 className="text-2xl font-bold">Make Project</h1>

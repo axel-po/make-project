@@ -11,11 +11,12 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { deleteProject } from "@/query/project.query";
-import { db } from "@/server/db";
+import { redirect } from "next/navigation";
 
 type Props = {
   projectId: string;
 };
+
 export function RemoveProject(projectId: Props) {
   return (
     <AlertDialog>
@@ -37,6 +38,8 @@ export function RemoveProject(projectId: Props) {
                 formAction={async () => {
                   "use server";
                   await deleteProject(projectId?.projectId);
+
+                  redirect("/");
                 }}
               >
                 Continue

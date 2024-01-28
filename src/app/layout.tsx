@@ -24,12 +24,14 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`font-sans ${inter.variable}`}>
-        <Header />
-        <Sidebar />
-        <div className="ml-[300px] mr-12 mt-[100px]">
-          <Provider>{children}</Provider>
+        <div className="mx-auto max-w-[2500px]">
+          <Header />
+          <Sidebar />
+          <div className="ml-[300px] mr-12 mt-[100px]">
+            <Provider>{children}</Provider>
+          </div>
+          <Toaster />
         </div>
-        <Toaster />
       </body>
     </html>
   );
