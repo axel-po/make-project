@@ -38,8 +38,6 @@ const ProjectView = async ({
   // Check if user is already in project
   const isInProject = await checkIfUserIsAlreadyInProject(projectId, userId);
 
-  console.log(projectId);
-
   return (
     <>
       <Link className="flex items-center gap-2" href="/">
