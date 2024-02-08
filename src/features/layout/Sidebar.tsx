@@ -22,8 +22,8 @@ const Sidebar = () => {
           <LinkSideBar checkActivePath href="/">
             Accueil
           </LinkSideBar>
-          <LinkSideBar checkActivePath href="/dashboard">
-            Dashboard
+          <LinkSideBar checkActivePath href="/profile">
+            Profile
           </LinkSideBar>
         </nav>
       </div>

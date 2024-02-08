@@ -11,7 +11,7 @@ const TabsDashboard = () => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="yourProject">
-        <ProjectsByCurrentUser />
+        {/* <ProjectsByCurrentUser /> */}
       </TabsContent>
       <TabsContent value="othersProject">en cours ...</TabsContent>
     </Tabs>

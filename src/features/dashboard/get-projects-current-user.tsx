@@ -4,13 +4,19 @@ import { getServerAuthSession } from "@/server/auth";
 import Link from "next/link";
 import UpdateStatusProject from "./update-status-project";
 
-const ProjectsByCurrentUser = async () => {
+type Props = {
+  projectId: string;
+};
+
+const ProjectsByCurrentUser = async ({ projectId }: Props) => {
   const session = await getServerAuthSession();
 
   const userId = session?.user?.id ?? "";
 
-  const userInterestedByYourProject = await usersInterestedInProjects(userId);
-  console.log(userInterestedByYourProject);
+  const userInterestedByYourProject = await usersInterestedInProjects(
+    userId,
+    projectId,
+  );
 
   return (
     <>

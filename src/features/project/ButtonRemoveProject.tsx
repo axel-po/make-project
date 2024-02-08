@@ -21,7 +21,7 @@ export function RemoveProject(projectId: Props) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="outline">Supprimer ?</Button>
+        <Button variant="destructive">Supprimer</Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -31,7 +31,7 @@ export function RemoveProject(projectId: Props) {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>Annuler</AlertDialogCancel>
           <AlertDialogAction>
             <form>
               <button

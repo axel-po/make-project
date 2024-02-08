@@ -3,10 +3,11 @@ import { db } from "@/server/db";
 // Requests page dashboard
 
 // Personnes intéréssé à rejoindre votre projet
-export const usersInterestedInProjects = (userId: string) =>
+export const usersInterestedInProjects = (userId: string, projectID: string) =>
   db.usersWhoWantJoinProject.findMany({
     where: {
       project: {
+        id: projectID,
         user: {
           id: userId,
         },
